@@ -2,24 +2,37 @@ using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
-    // [SerializeField] Rooms rooms;
-    [SerializeField] FirstRoom firstRoom;
+    [Header("Rooms")]
+    [SerializeField] RoomMaker roomMaker;
+
+    [Space]
+    [Header("Player")]
+    [SerializeField] PlayerBehavior player;
+
+    [Space]
+    [Header("Enemy")]
+    [SerializeField] EnemyBehavior enemy;
+
+    [Space]
+    [Header("Game Manager")]
+    [SerializeField] GameManager gameManager;
+
+
+
     void Start()
     {
         ObjectCreation();
         ObjectInitialise();
-        // rooms.Draw();
     }
 
     private void ObjectCreation()
     {
-        // rooms = Instantiate(rooms);
-        
+        roomMaker = Instantiate(roomMaker);
     }
 
     private void ObjectInitialise()
     {
-        // rooms.Initialise(3, 3, 3, 3);
+        roomMaker.Initialise();
     }
 
 }

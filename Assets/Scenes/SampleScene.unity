@@ -348,7 +348,7 @@ Transform:
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -461,7 +461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a18b700740485246a34cd403007db2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
-  firstRoom: {fileID: 7566630816291078121, guid: f35db089b55259e43b3ebf9f5347434a, type: 3}
+  roomMaker: {fileID: 7768003593045759853, guid: b5b4c8d47b2e98c48ade7fa7534558d8, type: 3}
+  player: {fileID: 2908222260188885990, guid: 945eb19de722db54382f1b92931fcbae, type: 3}
+  enemy: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+  gameManager: {fileID: 9214775690835369190, guid: d87caabb0b4952644901553ab9274c8b, type: 3}
 --- !u!4 &1748707329
 Transform:
   m_ObjectHideFlags: 0

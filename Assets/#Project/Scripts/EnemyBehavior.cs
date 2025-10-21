@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,11 +13,13 @@ public class EnemyBehavior : MonoBehaviour
     private EnemyState state;
 
     [SerializeField] List<Transform> transforms;
-    private int index = 0;
     NavMeshAgent agent;
+    private int rdn;
 
+    [SerializeField] private Transform playerTransform;
     [SerializeField] float maxDist;
     [SerializeField] float maxAngle;
+
 
 
 
@@ -26,23 +27,68 @@ public class EnemyBehavior : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         state = EnemyState.Patrol;
-        transform.position = transforms[index].position;
+        ChooseDestination();
     }
 
     void Update()
     {
-        ChooseDestination();
+        // Debug.Log(state);
+
+        switch (state)
+        {
+            case EnemyState.Patrol:
+                if (Vector3.Distance(agent.destination, transform.position) <= 1.5f)
+                {
+                    ChooseDestination();
+                }
+                if (CanSeePlayer())
+                {
+                    state = EnemyState.Chase;
+                }
+                break;
+
+            case EnemyState.Chase:
+                agent.SetDestination(playerTransform.position);
+                if (!CanSeePlayer())
+                {
+                    state = EnemyState.Patrol;
+                }
+                break;
+
+
+        }
+
+
     }
 
     void ChooseDestination()
     {
-        while (index < transforms.Count)
+        rdn = Random.Range(0, transforms.Count);
+        agent.SetDestination(transforms[rdn].position);
+        Debug.Log(rdn);
+    }
+
+    bool CanSeePlayer()
+    {
+        //faire un raycast depuis l'ennemy vers le joueur, il faut donc lui passer le joueur (transform)
+        //physics.raycast pour condition, compare tag
+
+        RaycastHit hit;
+        Vector3 playerDistance = playerTransform.position - transform.position;
+        if (Physics.Raycast(transform.position+(Vector3.up * 0.3f), playerDistance, out hit, maxDist))
         {
-            index++;
-            if (index == transforms.Count) {
-                index = 0;
+            //check collider
+            if (hit.collider.CompareTag("Player"))
+            {
+                //check angle 
+                if (Vector3.Angle(transform.forward, playerDistance) <= maxAngle)
+                {
+                    return true;
+                }
             }
         }
-        
+
+        return false;
     }
+
 }

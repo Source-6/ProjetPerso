@@ -462,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInitializer
   roomMaker: {fileID: 7768003593045759853, guid: b5b4c8d47b2e98c48ade7fa7534558d8, type: 3}
+  ground: {fileID: 8656499702805148623, guid: 4c7d9953438db9949914865483c083f0, type: 3}
   player: {fileID: 2908222260188885990, guid: 945eb19de722db54382f1b92931fcbae, type: 3}
   enemy: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
   gameManager: {fileID: 9214775690835369190, guid: d87caabb0b4952644901553ab9274c8b, type: 3}

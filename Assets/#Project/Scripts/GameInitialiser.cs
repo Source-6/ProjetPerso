@@ -4,6 +4,7 @@ public class GameInitializer : MonoBehaviour
 {
     [Header("Rooms")]
     [SerializeField] RoomMaker roomMaker;
+    [SerializeField] GroundGenerator ground;
 
     [Space]
     [Header("Player")]
@@ -21,18 +22,20 @@ public class GameInitializer : MonoBehaviour
 
     void Start()
     {
-        ObjectCreation();
+        // ObjectCreation();
         ObjectInitialise();
     }
 
     private void ObjectCreation()
     {
-        roomMaker = Instantiate(roomMaker);
+        // roomMaker = Instantiate(roomMaker);
+        
     }
 
     private void ObjectInitialise()
     {
-        roomMaker.Initialise();
+        // roomMaker.Initialise();
+        ground.Initialise();
     }
 
 }

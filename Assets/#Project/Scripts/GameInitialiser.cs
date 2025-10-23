@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameInitializer : MonoBehaviour
 {
     [Header("Rooms")]
-    [SerializeField] RoomMaker roomMaker;
+
     [SerializeField] GroundGenerator ground;
 
     [Space]

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+
+//---------THIS SCRIPT IS UNUSED FOR NOW
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class Rooms : MonoBehaviour
 {

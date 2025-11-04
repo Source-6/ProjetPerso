@@ -1193,6 +1193,14 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+      propertyPath: maxDistWall
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+      propertyPath: maxDistChase
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1343023651}
@@ -1574,7 +1582,7 @@ GameObject:
   - component: {fileID: 1121382906}
   m_Layer: 0
   m_Name: SmallWall (5)
-  m_TagString: SmallWall
+  m_TagString: DestroyableWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3195,7 +3203,7 @@ Transform:
   m_GameObject: {fileID: 2146067409}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.32, y: 0, z: -6.75}
+  m_LocalPosition: {x: 7.61, y: 0, z: 6.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -9,6 +9,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         Patrol,
         Chase,
+        Destroying,
     }
     private EnemyState state;
 
@@ -17,7 +18,8 @@ public class EnemyBehavior : MonoBehaviour
     private int rdn;
 
     [SerializeField] private Transform playerTransform;
-    [SerializeField] float maxDist;
+    [SerializeField] float maxDistChase;
+    [SerializeField] float maxDistWall;
     [SerializeField] float maxAngle;
 
 
@@ -32,7 +34,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(state);
+        Debug.Log(state);
 
         switch (state)
         {
@@ -45,6 +47,10 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     state = EnemyState.Chase;
                 }
+                if(CanDestroyWall())
+                {
+                    state = EnemyState.Destroying;
+                }
                 break;
 
             case EnemyState.Chase:
@@ -54,6 +60,12 @@ public class EnemyBehavior : MonoBehaviour
                     state = EnemyState.Patrol;
                 }
                 break;
+
+            case EnemyState.Destroying:
+                DestroyWall();
+                break;
+
+            
 
 
         }
@@ -75,7 +87,7 @@ public class EnemyBehavior : MonoBehaviour
 
         RaycastHit hit;
         Vector3 playerDistance = playerTransform.position - transform.position;
-        if (Physics.Raycast(transform.position+(Vector3.up * 0.3f), playerDistance, out hit, maxDist))
+        if (Physics.Raycast(transform.position+(Vector3.up * 0.3f), playerDistance, out hit, maxDistChase))
         {
             //check collider
             if (hit.collider.CompareTag("Player"))
@@ -89,6 +101,27 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         return false;
+    }
+
+    bool CanDestroyWall()
+    {
+
+        RaycastHit hit;
+        Vector3 destination = new Vector3(0,0,5);
+        Debug.DrawRay(transform.position, destination, Color.azure);
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.3f), destination, out hit, maxDistWall))
+        {
+            if (hit.collider.CompareTag("DestroyableWall"))
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    void DestroyWall(){
+        //idk ho to give it the right wall
     }
 
 }

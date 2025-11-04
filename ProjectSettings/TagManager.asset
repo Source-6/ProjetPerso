@@ -9,6 +9,8 @@ TagManager:
   - SmallWall
   - Enemy
   - DoorWall
+  - CorridorWall
+  - DestroyableWall
   layers:
   - Default
   - TransparentFX

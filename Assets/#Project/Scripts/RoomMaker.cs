@@ -4,6 +4,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+//---------THIS SCRIPT IS UNUSED FOR NOW
 public class RoomMaker : MonoBehaviour
 {
     [SerializeField] Transform cubePrefab;

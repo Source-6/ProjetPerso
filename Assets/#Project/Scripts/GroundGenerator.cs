@@ -10,8 +10,6 @@ public class GroundGenerator : MonoBehaviour
     [SerializeField] private Transform tile;
     private List<Transform> tiles = new();
     private const float TILE_SIZE = 4.0f;
-    [SerializeField] private float gap = 0f;
-
     private Vector3 pos;
     private Vector3 dim;
     private float x ;

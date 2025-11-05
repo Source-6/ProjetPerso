@@ -375,5 +375,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
   transforms:
   - {fileID: 0}
-  maxDist: 0
-  maxAngle: 0
+  - {fileID: 0}
+  - {fileID: 0}
+  playerTransform: {fileID: 0}
+  maxDistChase: 1.5
+  maxAngle: 180
+  maxDistWall: 2
+  destroyableWall: {fileID: 0}

@@ -1,5 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -19,8 +21,18 @@ public class EnemyBehavior : MonoBehaviour
 
     [SerializeField] private Transform playerTransform;
     [SerializeField] float maxDistChase;
-    [SerializeField] float maxDistWall;
     [SerializeField] float maxAngle;
+    [SerializeField] float maxDistWall;
+    private GameObject destroyableWall;
+
+    private bool canSeePlayer = false;
+    private bool canDestroyWall = false;
+    [SerializeField] private float coolDownBefore;
+    [SerializeField] private float coolDownAfter;
+
+    private float visibilityCooldown = 3f;
+    private float visibilityCooldownTimer = 0f;
+
 
 
 
@@ -35,6 +47,7 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         Debug.Log(state);
+        RayHittingSomething();
 
         switch (state)
         {
@@ -43,11 +56,11 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     ChooseDestination();
                 }
-                if (CanSeePlayer())
+                if (canSeePlayer)
                 {
                     state = EnemyState.Chase;
                 }
-                if(CanDestroyWall())
+                if (canDestroyWall)
                 {
                     state = EnemyState.Destroying;
                 }
@@ -55,22 +68,40 @@ public class EnemyBehavior : MonoBehaviour
 
             case EnemyState.Chase:
                 agent.SetDestination(playerTransform.position);
-                if (!CanSeePlayer())
+                if (!canSeePlayer)
                 {
                     state = EnemyState.Patrol;
                 }
                 break;
 
             case EnemyState.Destroying:
-                DestroyWall();
+                if (destroyableWall != null){
+                    agent.SetDestination(destroyableWall.transform.position);
+                }
+
+                if (agent.remainingDistance < 1f && coolDownBefore > 0)
+                {
+                    coolDownBefore -= Time.deltaTime;
+                    Debug.Log(coolDownBefore);
+                    if (coolDownBefore <= 0f)
+                    {
+                        DestroyWall();
+                        Invoke(nameof(SetStateToPatrol), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
+                        ResetCooldowns();  
+                    }
+                } 
                 break;
-
-            
-
-
         }
+    }
+    
+    void SetStateToPatrol(){
+        state = EnemyState.Patrol;
+    }
 
-
+    void ResetCooldowns()
+    {
+        coolDownBefore = 2f;
+        coolDownAfter = 2f;
     }
 
     void ChooseDestination()
@@ -80,48 +111,57 @@ public class EnemyBehavior : MonoBehaviour
         Debug.Log(rdn);
     }
 
-    bool CanSeePlayer()
+    IEnumerator PlayerVisibilityCooldown()
     {
-        //faire un raycast depuis l'ennemy vers le joueur, il faut donc lui passer le joueur (transform)
-        //physics.raycast pour condition, compare tag
+        visibilityCooldownTimer = visibilityCooldown;
+        while(visibilityCooldownTimer > 0){
+            visibilityCooldownTimer -= Time.deltaTime;
+            yield return true;
+        }
+        canSeePlayer = false; 
+    }
 
+
+    void RayHittingSomething()
+    {
         RaycastHit hit;
-        Vector3 playerDistance = playerTransform.position - transform.position;
-        if (Physics.Raycast(transform.position+(Vector3.up * 0.3f), playerDistance, out hit, maxDistChase))
+        float randomOffset = Random.Range(-1f, 1f) * Mathf.Tan(Mathf.Deg2Rad * maxAngle * 0.5f);  //choose a random point in the desired area (and convert it to rad)
+        Vector3 direction = transform.forward + (transform.right * randomOffset);
+
+
+        Debug.DrawLine(transform.position + Vector3.up * -0.3f, transform.position + Vector3.up * -0.3f + direction * maxDistChase);
+
+        if (Physics.Raycast(transform.position + (Vector3.up * -0.3f), direction, out hit, maxDistChase))
         {
-            //check collider
             if (hit.collider.CompareTag("Player"))
             {
-                //check angle 
-                if (Vector3.Angle(transform.forward, playerDistance) <= maxAngle)
+                if (Vector3.Angle(transform.forward, direction) <= maxAngle)
                 {
-                    return true;
+                    canSeePlayer = true;
+                    if(visibilityCooldownTimer <=0){
+                        StartCoroutine(PlayerVisibilityCooldown());
+                    } else {
+                        visibilityCooldownTimer = visibilityCooldown;
+                    }
+
                 }
             }
-        }
-
-        return false;
-    }
-
-    bool CanDestroyWall()
-    {
-
-        RaycastHit hit;
-        Vector3 destination = new Vector3(0,0,5);
-        Debug.DrawRay(transform.position, destination, Color.azure);
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.3f), destination, out hit, maxDistWall))
-        {
-            if (hit.collider.CompareTag("DestroyableWall"))
+            else if (hit.collider.CompareTag("DestroyableWall"))
             {
-                return true;
+                if (Vector3.Angle(transform.forward, direction) <= maxAngle)
+                {
+                    canDestroyWall = true;
+                    destroyableWall = hit.collider.gameObject;  //giving the right wall
+                }
+
             }
         }
-        return false;
-
     }
 
-    void DestroyWall(){
-        //idk ho to give it the right wall
+    void DestroyWall()
+    {
+        Destroy(destroyableWall);
+        canDestroyWall = false;
     }
 
 }

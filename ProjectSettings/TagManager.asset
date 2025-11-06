@@ -11,6 +11,8 @@ TagManager:
   - DoorWall
   - CorridorWall
   - DestroyableWall
+  - CinemachineTarget
+  - Pickupable
   layers:
   - Default
   - TransparentFX

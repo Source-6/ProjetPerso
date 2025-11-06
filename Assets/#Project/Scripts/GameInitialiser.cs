@@ -29,13 +29,15 @@ public class GameInitializer : MonoBehaviour
     private void ObjectCreation()
     {
         // roomMaker = Instantiate(roomMaker);
+        // player = Instantiate(player);
         
     }
 
     private void ObjectInitialise()
     {
         // roomMaker.Initialise();
-        ground.Initialise();
+        ground.Initialize();
+        player.Initialize();
     }
 
 }

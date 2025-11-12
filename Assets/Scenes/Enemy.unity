@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 400692392}
   m_Layer: 0
   m_Name: SmallWall (14)
-  m_TagString: SmallWall
+  m_TagString: DestroyableWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

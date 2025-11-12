@@ -223,13 +223,22 @@
             ]
         },
         {
-            "name": "ItemInput",
+            "name": "InteractInput",
             "id": "8eef635b-3d7a-40fc-b2f5-e9052096861c",
             "actions": [
                 {
                     "name": "Pickup",
                     "type": "Button",
                     "id": "08513c93-b376-4c0b-b48f-6c7f4fc42b9b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Open",
+                    "type": "Button",
+                    "id": "9581f834-9425-477d-9d9f-3de55da60def",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -245,6 +254,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pickup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d824614-b735-42bf-a919-08cdb800282f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

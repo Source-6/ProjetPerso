@@ -24,6 +24,7 @@ public class GameInitializer : MonoBehaviour
     {
         // ObjectCreation();
         ObjectInitialise();
+        // Cursor.visible = true;
     }
 
     private void ObjectCreation()

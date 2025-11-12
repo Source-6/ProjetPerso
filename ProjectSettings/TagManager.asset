@@ -13,6 +13,7 @@ TagManager:
   - DestroyableWall
   - CinemachineTarget
   - Pickupable
+  - Door
   layers:
   - Default
   - TransparentFX

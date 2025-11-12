@@ -16,17 +16,17 @@ public class PickupItems : MonoBehaviour
         canPickUp = false;
         hasItem = false;
 
-        pickup = actions.FindActionMap("ItemInput").FindAction("Pickup");
+        pickup = actions.FindActionMap("InteractInput").FindAction("Pickup");
     }
 
     private void OnEnable()
     {
-        actions.FindActionMap("ItemInput").Enable();
-        actions.FindActionMap("ItemInput").FindAction("Pickup").performed += PickUp;
+        actions.FindActionMap("InteractInput").Enable();
+        actions.FindActionMap("InteractInput").FindAction("Pickup").performed += PickUp;
     }
     private void OnDisable()
     {
-        actions.FindActionMap("ItemInput").Disable();
+        actions.FindActionMap("InteractInput").Disable();
         
     }
 

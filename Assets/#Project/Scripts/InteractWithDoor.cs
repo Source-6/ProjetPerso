@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 public class InteractWithDoor : MonoBehaviour
 {
     [SerializeField] private InputActionAsset actions;
-    private InputAction openDoor;
 
-    private Transform door;
+
+    [SerializeField]private Transform door;
     private bool doorIsOpen;
     private bool canOpenDoor;
-    private bool canCloseDoor;
+    private bool closeDoor;
 
     private Animator animator;
 
@@ -18,31 +18,37 @@ public class InteractWithDoor : MonoBehaviour
     {
         doorIsOpen = false;
         canOpenDoor = false;
+        // closeDoor = true;
 
-        openDoor = actions.FindActionMap("InteractInput").FindAction("Open");
     }
 
     private void OnEnable()
     {
         actions.FindActionMap("InteractInput").Enable();
-        actions.FindActionMap("InteractInput").FindAction("Open").performed += OpenDoor;
+        actions.FindActionMap("InteractInput").FindAction("Open").performed += OpenDoorAction;
     }
 
     private void OnDisable()
     {
         actions.FindActionMap("InteractInput").Disable();
-        actions.FindActionMap("InteractInput").FindAction("Open").performed -= OpenDoor;
+        actions.FindActionMap("InteractInput").FindAction("Open").performed -= OpenDoorAction;
 
     }
 
-    private void OpenDoor(InputAction.CallbackContext callbackContext)
+    private void OpenDoorAction(InputAction.CallbackContext callbackContext)
     {
+
         if (door == null) return;
 
+        DoorReaction();
+    }
+
+    public void DoorReaction()
+    {
         animator = door.GetComponent<Animator>();
         if (canOpenDoor)
         {
-            // door.transform.Rotate(0, 0, 80f, Space.Self);  //rotate on z bc blender(duh)
+            // door.transform.Rotate(0, 0, 80f, Space.Self);  //rotate on z bc blender(duh)  --> now rotating with animation
             doorIsOpen = true;
             animator.SetBool("isOpenning", doorIsOpen);
 
@@ -51,6 +57,18 @@ public class InteractWithDoor : MonoBehaviour
         {
             canOpenDoor = false;
             animator.SetBool("isOpenning", doorIsOpen);
+
+        }
+        if (closeDoor)  
+        {
+            Debug.Log("exit (close door)");
+            doorIsOpen = false;
+
+            animator.SetBool("isOpenning", doorIsOpen);
+            animator.SetBool("isClosing", closeDoor);
+            door = null;
+
+
         }
     }
 
@@ -58,6 +76,7 @@ public class InteractWithDoor : MonoBehaviour
     {
         if (other.gameObject.tag == "Door" && !doorIsOpen)
         {
+            closeDoor = false;
             canOpenDoor = true;
             door = other.transform;
         }
@@ -65,10 +84,13 @@ public class InteractWithDoor : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-         if (other.gameObject.tag == "Door")
+        if (other.gameObject.tag == "Door")
         {
             canOpenDoor = false;
-            door = null;
+            doorIsOpen = false;
+            closeDoor = true;
+            Debug.Log("exit collider");
+            DoorReaction();
         }
     }
 

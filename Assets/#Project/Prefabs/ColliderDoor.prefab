@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6343603785005643093}
   - component: {fileID: 402093950522291946}
+  - component: {fileID: 1970969004596293194}
   m_Layer: 0
   m_Name: ColliderDoor
   m_TagString: Door
@@ -54,6 +55,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.640417, y: 6.776147, z: 4.6445513}
   m_Center: {x: -2.0082865, y: 2.888073, z: -0.7419524}
+--- !u!95 &1970969004596293194
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665503852859808115}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b8d2b4f0147d424097258297ba064d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &712454507330676160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,6 +133,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 5849633083476305913, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 28b1745e803c3954e842c083019c82ad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

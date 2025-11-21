@@ -46,7 +46,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
+        // Debug.Log(state);
         RayHittingSomething();
 
         switch (state)
@@ -82,7 +82,7 @@ public class EnemyBehavior : MonoBehaviour
                 if (agent.remainingDistance < 1f && coolDownBefore > 0)
                 {
                     coolDownBefore -= Time.deltaTime;
-                    Debug.Log(coolDownBefore);
+                    // Debug.Log(coolDownBefore);
                     if (coolDownBefore <= 0f)
                     {
                         DestroyWall();
@@ -108,7 +108,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         rdn = Random.Range(0, transforms.Count);
         agent.SetDestination(transforms[rdn].position);
-        Debug.Log(rdn);
     }
 
     IEnumerator PlayerVisibilityCooldown()
@@ -161,6 +160,7 @@ public class EnemyBehavior : MonoBehaviour
     void DestroyWall()
     {
         Destroy(destroyableWall);
+        Debug.Log("destroy wall");
         canDestroyWall = false;
     }
 

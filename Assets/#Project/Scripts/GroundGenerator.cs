@@ -15,24 +15,7 @@ public class GroundGenerator : MonoBehaviour
     private Vector3 dim;
     private float x;
     private float z;
-    // public void Initialise()
-    // {
-    //     pos = transform.position;
-    //     dim = transform.localScale;
 
-    //     for (int i = 0; i < rows; i++)
-    //     {            
-    //         for (int j = 0; j < columns; j++)
-    //         {
-    //             x = i*2 + (pos.x *2 + dim.x);
-    //             z = j*2+pos.z*2;
-    //             Transform tileClone = Instantiate(tile);
-    //             tileClone.transform.position = new Vector3(x, 0, z);
-
-
-    //         }
-    //     }
-    // }
 
     public void Initialize()
     {

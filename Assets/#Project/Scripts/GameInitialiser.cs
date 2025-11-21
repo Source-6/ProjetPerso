@@ -37,7 +37,7 @@ public class GameInitializer : MonoBehaviour
     private void ObjectInitialise()
     {
         // roomMaker.Initialise();
-        ground.Initialize();
+        // ground.Initialize();
         player.Initialize();
     }
 

@@ -46,7 +46,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(state);
+        Debug.Log(state);
         RayHittingSomething();
 
         switch (state)
@@ -132,7 +132,7 @@ public class EnemyBehavior : MonoBehaviour
 
         if (Physics.Raycast(transform.position + (Vector3.up * -0.3f), direction, out hit, maxDistChase))
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player")) 
             {
                 if (Vector3.Angle(transform.forward, direction) <= maxAngle)
                 {

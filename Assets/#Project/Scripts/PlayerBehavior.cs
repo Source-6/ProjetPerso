@@ -41,11 +41,15 @@ public class PlayerBehavior : MonoBehaviour
     #endregion
 
     [SerializeField] Transform startingPos;
+    [SerializeField] EnemyBehavior enemy;
+    [SerializeField] public int playerLife;
 
     public void Initialize()
     {
         transform.position = startingPos.position;
     }
+
+    
 
 
 

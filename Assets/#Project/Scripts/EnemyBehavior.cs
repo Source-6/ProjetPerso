@@ -20,6 +20,7 @@ public class EnemyBehavior : MonoBehaviour
     private int rdn;
 
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private PlayerBehavior player;
     [SerializeField] float maxDistChase;
     [SerializeField] float maxAngle;
     [SerializeField] float maxDistWall;
@@ -75,8 +76,9 @@ public class EnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Destroying:
-                if (destroyableWall != null){
-                    agent.SetDestination(destroyableWall.transform.position);
+                if (destroyableWall != null)
+                {
+                    agent.SetDestination(destroyableWall.transform.position);  //need to add an offset sor ennemy doesn't go around the wall to destroy it
                 }
 
                 if (agent.remainingDistance < 1f && coolDownBefore > 0)
@@ -87,14 +89,15 @@ public class EnemyBehavior : MonoBehaviour
                     {
                         DestroyWall();
                         Invoke(nameof(SetStateToPatrol), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
-                        ResetCooldowns();  
+                        ResetCooldowns();
                     }
-                } 
+                }
                 break;
         }
     }
-    
-    void SetStateToPatrol(){
+
+    void SetStateToPatrol()
+    {
         state = EnemyState.Patrol;
     }
 
@@ -113,11 +116,12 @@ public class EnemyBehavior : MonoBehaviour
     IEnumerator PlayerVisibilityCooldown()
     {
         visibilityCooldownTimer = visibilityCooldown;
-        while(visibilityCooldownTimer > 0){
+        while (visibilityCooldownTimer > 0)
+        {
             visibilityCooldownTimer -= Time.deltaTime;
             yield return true;
         }
-        canSeePlayer = false; 
+        canSeePlayer = false;
     }
 
 
@@ -132,14 +136,17 @@ public class EnemyBehavior : MonoBehaviour
 
         if (Physics.Raycast(transform.position + (Vector3.up * -0.3f), direction, out hit, maxDistChase))
         {
-            if (hit.collider.CompareTag("Player")) 
+            if (hit.collider.CompareTag("Player"))
             {
                 if (Vector3.Angle(transform.forward, direction) <= maxAngle)
                 {
                     canSeePlayer = true;
-                    if(visibilityCooldownTimer <=0){
+                    if (visibilityCooldownTimer <= 0)
+                    {
                         StartCoroutine(PlayerVisibilityCooldown());
-                    } else {
+                    }
+                    else
+                    {
                         visibilityCooldownTimer = visibilityCooldown;
                     }
 
@@ -162,6 +169,14 @@ public class EnemyBehavior : MonoBehaviour
         Destroy(destroyableWall);
         Debug.Log("destroy wall");
         canDestroyWall = false;
+    }
+
+    void EnnemyAttack()
+    {
+        if (player.playerLife > 0)
+        {
+            player.playerLife -= 1;
+        }
     }
 
 }

@@ -47,7 +47,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
+        // Debug.Log(state);
         RayHittingSomething();
 
         switch (state)

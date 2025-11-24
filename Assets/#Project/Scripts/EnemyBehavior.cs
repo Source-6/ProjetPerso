@@ -25,6 +25,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float maxAngle;
     [SerializeField] float maxDistWall;
     private GameObject destroyableWall;
+    private GameObject destroyableDoor;
+    private bool canDestroyDoor;
 
     private bool canSeePlayer = false;
     private bool canDestroyWall = false;
@@ -47,7 +49,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
+        // Debug.Log(state);
         RayHittingSomething();
 
         switch (state)
@@ -61,7 +63,7 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     state = EnemyState.Chase;
                 }
-                if (canDestroyWall)
+                if (canDestroyWall || canDestroyDoor)
                 {
                     state = EnemyState.Destroying;
                 }
@@ -80,6 +82,10 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     agent.SetDestination(destroyableWall.transform.position);  //need to add an offset sor ennemy doesn't go around the wall to destroy it
                 }
+                else if (destroyableDoor != null)
+                {
+                    agent.SetDestination(destroyableDoor.transform.position);
+                }
 
                 if (agent.remainingDistance < 1f && coolDownBefore > 0)
                 {
@@ -87,7 +93,14 @@ public class EnemyBehavior : MonoBehaviour
                     // Debug.Log(coolDownBefore);
                     if (coolDownBefore <= 0f)
                     {
-                        DestroyWall();
+                        if (canDestroyDoor){
+                            canDestroyWall = false;
+                            DestroyObject(destroyableDoor);
+                        }
+                        else if (canDestroyWall){
+                            canDestroyDoor = false;
+                            DestroyObject(destroyableWall);
+                        }
                         Invoke(nameof(SetStateToPatrol), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
                         ResetCooldowns();
                     }
@@ -161,14 +174,24 @@ public class EnemyBehavior : MonoBehaviour
                 }
 
             }
+            else if (hit.collider.CompareTag("Door"))
+            {
+                if (Vector3.Angle(transform.forward, direction) <= maxAngle)
+                {
+                    canDestroyDoor = true;
+                    destroyableDoor = hit.collider.gameObject;  //giving the right door
+                }
+
+            }
         }
     }
 
-    void DestroyWall()
+    void DestroyObject(GameObject gameObject)
     {
-        Destroy(destroyableWall);
+        Destroy(gameObject);
         Debug.Log("destroy wall");
         canDestroyWall = false;
+        canDestroyDoor = false;
     }
 
     void EnnemyAttack()

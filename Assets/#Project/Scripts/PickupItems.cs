@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PickupItems : MonoBehaviour
+public class PickupItems : AbstractItems
 {
     #region old code
     // [SerializeField] private InputActionAsset actions;
@@ -62,8 +63,11 @@ public class PickupItems : MonoBehaviour
 
 
     [SerializeField] private InputActionAsset actions;
-    [SerializeField] private GameObject item;
-    [SerializeField] List<GameObject> items = new List<GameObject>();
+    [SerializeField] private GameObject fakeItem;
+    [SerializeField] private GameObject realItem;
+    [SerializeField] List<GameObject> realItems = new List<GameObject>();
+    [SerializeField] private TMP_Text testItem;
+    private int testint = 0;
 
 
     private bool canPickUp = false;
@@ -83,7 +87,7 @@ public class PickupItems : MonoBehaviour
 
     private void PickUpItemAction(InputAction.CallbackContext callbackContext)
     {
-        if (item == null) return;
+        if (fakeItem == null) return;
         PickUpItem();
 
     }
@@ -92,9 +96,11 @@ public class PickupItems : MonoBehaviour
     {
         if (canPickUp)
         {
-            items.Add(item);
-            item.SetActive(false);
-            Debug.Log(items);
+            realItems.Add(realItem);
+            Destroy(fakeItem);
+            testint++;
+            testItem.text = testint.ToString();
+            Debug.Log(realItems.Count);
         }
     }
 
@@ -103,7 +109,7 @@ public class PickupItems : MonoBehaviour
         if (other.gameObject.tag == "Pickupable" && !inInventory)
         {
             canPickUp = true;
-            item = other.gameObject;
+            fakeItem = other.gameObject;
         }
     }
 

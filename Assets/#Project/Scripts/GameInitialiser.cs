@@ -20,11 +20,14 @@ public class GameInitializer : MonoBehaviour
 
 
 
+
     void Start()
     {
         // ObjectCreation();
         ObjectInitialise();
         // Cursor.visible = true;
+
+
     }
 
     private void ObjectCreation()

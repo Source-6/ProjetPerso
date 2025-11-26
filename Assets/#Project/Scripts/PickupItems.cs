@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PickupItems : AbstractItems
+public class PickupItems : MonoBehaviour
 {
     #region old code
     // [SerializeField] private InputActionAsset actions;
@@ -65,13 +65,20 @@ public class PickupItems : AbstractItems
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private GameObject fakeItem;
     [SerializeField] private GameObject realItem;
-    [SerializeField] List<GameObject> realItems = new List<GameObject>();
+    [SerializeField] private List<GameObject> realItems = new List<GameObject>();
+    private List<string> tags = new List<string>();
     [SerializeField] private TMP_Text testItem;
     private int testint = 0;
 
 
     private bool canPickUp = false;
     private bool inInventory = false;
+
+    private void Initialize()
+    {
+        tags.Add("Honey");
+        tags.Add("Glue");
+    }
 
     private void OnEnable()
     {
@@ -106,7 +113,7 @@ public class PickupItems : AbstractItems
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Pickupable" && !inInventory)
+        if ((other.gameObject.tag == "Honey" || other.gameObject.tag == "Glue" ) && !inInventory)
         {
             canPickUp = true;
             fakeItem = other.gameObject;
@@ -115,7 +122,7 @@ public class PickupItems : AbstractItems
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Pickupable")
+        if (other.gameObject.tag == "Honey" || other.gameObject.tag == "Glue" )
         {
             canPickUp = false;
         }

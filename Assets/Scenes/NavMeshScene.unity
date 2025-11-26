@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 142263586}
   m_Layer: 0
   m_Name: Honey
-  m_TagString: Pickupable
+  m_TagString: Honey
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 257962967}
   m_Layer: 0
   m_Name: Glue
-  m_TagString: Pickupable
+  m_TagString: Glue
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

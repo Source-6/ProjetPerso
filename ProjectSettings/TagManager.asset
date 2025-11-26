@@ -14,6 +14,8 @@ TagManager:
   - CinemachineTarget
   - Pickupable
   - Door
+  - Honey
+  - Glue
   layers:
   - Default
   - TransparentFX

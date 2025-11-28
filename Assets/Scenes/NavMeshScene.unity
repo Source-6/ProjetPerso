@@ -403,10 +403,10 @@ GameObject:
   - component: {fileID: 142263584}
   - component: {fileID: 142263583}
   - component: {fileID: 142263582}
-  - component: {fileID: 142263586}
+  - component: {fileID: 142263587}
   m_Layer: 0
   m_Name: Honey
-  m_TagString: Honey
+  m_TagString: Pickupable
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -497,13 +497,13 @@ Transform:
   m_GameObject: {fileID: 142263581}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7404099, y: 1.31001, z: -17.56406}
+  m_LocalPosition: {x: -1.7404099, y: 1.31, z: -17.56406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1169546015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &142263586
+--- !u!114 &142263587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,9 +512,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 142263581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2055a4d69866a3f4999b421bf6b01162, type: 3}
+  m_Script: {fileID: 11500000, guid: 44d91508ddd8d3545b2966be8b73016e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoneyBehavior
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemType: 1
 --- !u!4 &192598139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4358599383678359983, guid: e172735f51d56ca40a340d9e55cfa630, type: 3}
@@ -532,10 +533,10 @@ GameObject:
   - component: {fileID: 257962965}
   - component: {fileID: 257962964}
   - component: {fileID: 257962963}
-  - component: {fileID: 257962967}
+  - component: {fileID: 257962968}
   m_Layer: 0
   m_Name: Glue
-  m_TagString: Glue
+  m_TagString: Pickupable
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -632,7 +633,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1169546015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &257962967
+--- !u!114 &257962968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -641,9 +642,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 257962962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec9f8754b28ceb4fb5b7f0c02353b4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 44d91508ddd8d3545b2966be8b73016e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GlueBehavior
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemType: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +915,94 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &510933232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510933233}
+  - component: {fileID: 510933236}
+  - component: {fileID: 510933235}
+  - component: {fileID: 510933234}
+  m_Layer: 5
+  m_Name: FirstItemSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &510933233
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510933232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938791685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 800, y: 90}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &510933234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510933232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5cc8a93cce23e546afac503a1aa7b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeImage
+--- !u!114 &510933235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510933232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1007016151, guid: 4a8b01e0f33f16045bd156c75c699ed3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &510933236
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510933232}
+  m_CullTransparentMesh: 1
 --- !u!1001 &556356164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1767,6 +1857,7 @@ RectTransform:
   m_Children:
   - {fileID: 104315991}
   - {fileID: 121983247}
+  - {fileID: 510933233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1805,8 +1896,8 @@ MonoBehaviour:
   actions: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   fakeItem: {fileID: 0}
   realItem: {fileID: 1612683228487916310, guid: dba1b6058faf58845957e467e3e26958, type: 3}
-  realItems: []
   testItem: {fileID: 121983248}
+  inInventory: 0
 --- !u!114 &1999528971
 MonoBehaviour:
   m_ObjectHideFlags: 0

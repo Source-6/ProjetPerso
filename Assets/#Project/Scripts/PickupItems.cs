@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -64,21 +66,22 @@ public class PickupItems : MonoBehaviour
 
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private GameObject fakeItem;
+    private Dictionary<string, int> inventory = new Dictionary<string, int>();
+    
+    private Item item;
+    
     [SerializeField] private GameObject realItem;
-    [SerializeField] private List<GameObject> realItems = new List<GameObject>();
-    private List<string> tags = new List<string>();
+
     [SerializeField] private TMP_Text testItem;
+
+
     private int testint = 0;
 
 
     private bool canPickUp = false;
-    private bool inInventory = false;
+    public bool inInventory = false;
+    private bool canMakeTrap = false;
 
-    private void Initialize()
-    {
-        tags.Add("Honey");
-        tags.Add("Glue");
-    }
 
     private void OnEnable()
     {
@@ -103,26 +106,56 @@ public class PickupItems : MonoBehaviour
     {
         if (canPickUp)
         {
-            realItems.Add(realItem);
-            Destroy(fakeItem);
-            testint++;
-            testItem.text = testint.ToString();
-            Debug.Log(realItems.Count);
+            item = fakeItem.GetComponent<Item>();
+            if (item.itemType == Item.ItemType.Glue)
+            {
+                inventory.Add("glue", 1);
+                Destroy(fakeItem);
+                Debug.Log($"inv : glue");
+                Debug.Log(inventory["glue"]);
+                inventory.TryGetValue("glue", out int val);
+                
+                
+            }
+            else if (item.itemType == Item.ItemType.Honey)
+            {
+                inventory.Add("honey", 1);
+                Destroy(fakeItem);
+
+                Debug.Log($"inv : honey");
+
+            }
+            
+        
+            
+
+            
+            
+            
+            
+            
+            // realItems.Add(realItem);
+            // Destroy(fakeItem);
+            // testint++;
+            // testItem.text = testint.ToString();
+            // Debug.Log(realItems.Count);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag == "Honey" || other.gameObject.tag == "Glue" ) && !inInventory)
+        if (other.gameObject.tag == "Pickupable" && !inInventory)
         {
             canPickUp = true;
             fakeItem = other.gameObject;
+            // inInventory = true;
+            
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Honey" || other.gameObject.tag == "Glue" )
+        if (other.gameObject.tag == "Pickupable")
         {
             canPickUp = false;
         }

@@ -66,7 +66,7 @@ public class PickupItems : MonoBehaviour
 
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private GameObject fakeItem;
-    private Dictionary<string, int> inventory = new Dictionary<string, int>();
+    public Dictionary<string, int> inventory = new Dictionary<string, int>();
     
     private Item item;
     
@@ -76,6 +76,7 @@ public class PickupItems : MonoBehaviour
 
 
     private int testint = 0;
+    private int val;
 
 
     private bool canPickUp = false;
@@ -113,7 +114,7 @@ public class PickupItems : MonoBehaviour
                 Destroy(fakeItem);
                 Debug.Log($"inv : glue");
                 Debug.Log(inventory["glue"]);
-                inventory.TryGetValue("glue", out int val);
+                Debug.Log(inventory.TryGetValue("glue", out int val));
                 
                 
             }
@@ -122,7 +123,8 @@ public class PickupItems : MonoBehaviour
                 inventory.Add("honey", 1);
                 Destroy(fakeItem);
 
-                Debug.Log($"inv : honey");
+                Debug.Log(inventory["honey"]);
+                Debug.Log(inventory.TryGetValue("honey", out int val));
 
             }
             

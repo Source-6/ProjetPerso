@@ -65,76 +65,52 @@ public class PickupItems : MonoBehaviour
 
 
     [SerializeField] private InputActionAsset actions;
-    [SerializeField] private GameObject fakeItem;
-    public Dictionary<string, int> inventory = new Dictionary<string, int>();
+    [SerializeField] public GameObject fakeItem;
+    public Dictionary<GameObject, int> inventory = new Dictionary<GameObject, int>();
     
     private Item item;
     
-    [SerializeField] private GameObject realItem;
+    public GameObject realItemGlue;
+    public GameObject realItemHoney;
 
     [SerializeField] private TMP_Text testItem;
 
 
-    private int testint = 0;
-    private int val;
+
 
 
     private bool canPickUp = false;
     public bool inInventory = false;
-    private bool canMakeTrap = false;
+    // private bool canMakeTrap = false;
 
 
-    private void OnEnable()
-    {
-        actions.FindActionMap("InteractInput").Enable();
-        actions.FindActionMap("InteractInput").FindAction("PickUp").performed += PickUpItemAction;
-    }
 
-    private void OnDisable()
-    {
-        actions.FindActionMap("InteractInput").Disable();
-        actions.FindActionMap("InteractInput").FindAction("PickUp").performed -= PickUpItemAction;
-    }
-
-    private void PickUpItemAction(InputAction.CallbackContext callbackContext)
-    {
-        if (fakeItem == null) return;
-        PickUpItem();
-
-    }
 
     public void PickUpItem()
     {
         if (canPickUp)
         {
             item = fakeItem.GetComponent<Item>();
-            if (item.itemType == Item.ItemType.Glue)
+            if (item.itemType == Item.ItemType.GlueFake)
             {
-                inventory.Add("glue", 1);
+                inventory.Add(realItemGlue, 1);
                 Destroy(fakeItem);
-                Debug.Log($"inv : glue");
-                Debug.Log(inventory["glue"]);
-                Debug.Log(inventory.TryGetValue("glue", out int val));
+                Debug.Log(inventory[realItemGlue]);
+                Debug.Log(inventory.TryGetValue(realItemGlue, out int val));
                 
                 
             }
-            else if (item.itemType == Item.ItemType.Honey)
+            else if (item.itemType == Item.ItemType.HoneyFake)
             {
-                inventory.Add("honey", 1);
+                inventory.Add(realItemHoney, 1);
+
                 Destroy(fakeItem);
 
-                Debug.Log(inventory["honey"]);
-                Debug.Log(inventory.TryGetValue("honey", out int val));
+                Debug.Log(inventory[realItemHoney]);
+                Debug.Log(inventory.TryGetValue(realItemHoney, out int val));
 
             }
-            
-        
-            
-
-            
-            
-            
-            
+         
             
             // realItems.Add(realItem);
             // Destroy(fakeItem);

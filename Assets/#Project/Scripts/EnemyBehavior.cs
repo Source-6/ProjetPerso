@@ -12,6 +12,7 @@ public class EnemyBehavior : MonoBehaviour
         Patrol,
         Chase,
         Destroying,
+        Attacking,
     }
     private EnemyState state;
 
@@ -49,7 +50,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(state);
+        Debug.Log(state);
         RayHittingSomething();
 
         switch (state)
@@ -71,10 +72,20 @@ public class EnemyBehavior : MonoBehaviour
 
             case EnemyState.Chase:
                 agent.SetDestination(playerTransform.position);
+                if (transform.position == playerTransform.position + transform.forward)
+                {
+                    state = EnemyState.Attacking;
+                
+                }
                 if (!canSeePlayer)
                 {
                     state = EnemyState.Patrol;
                 }
+                break;
+
+            case EnemyState.Attacking:
+                agent.SetDestination(player.transform.position);
+                Debug.Log("attacking");
                 break;
 
             case EnemyState.Destroying:

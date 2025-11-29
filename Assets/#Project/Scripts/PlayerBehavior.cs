@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class PlayerBehavior : MonoBehaviour
@@ -44,12 +45,43 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] EnemyBehavior enemy;
     [SerializeField] public int playerLife;
 
+    //PickupItems :
+    [SerializeField] private InputActionAsset actions;
+    [SerializeField] private PickupItems pickupItems;
+
+    
+
     public void Initialize()
     {
         transform.position = startingPos.position;
     }
 
-    
+
+    void OnEnable()
+    {
+        actions.FindActionMap("InteractInput").Enable();
+        actions.FindActionMap("InteractInput").FindAction("PickUp").performed += PickUpItemAction;
+    }
+
+    private void OnDisable()
+    {
+        actions.FindActionMap("InteractInput").Disable();
+        actions.FindActionMap("InteractInput").FindAction("PickUp").performed -= PickUpItemAction;
+    }
+
+    private void PickUpItemAction(InputAction.CallbackContext callbackContext)
+    {
+        if (pickupItems.fakeItem == null) return;
+        pickupItems.PickUpItem();
+
+    }
+
+    public void Update()
+    {
+
+    }
+
+
 
 
 

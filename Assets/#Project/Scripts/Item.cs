@@ -5,8 +5,8 @@ public class Item : MonoBehaviour
 {
     public enum ItemType
     {
-        Glue,
-        Honey,
+        GlueFake,
+        HoneyFake,
     }
     public ItemType itemType;
 }

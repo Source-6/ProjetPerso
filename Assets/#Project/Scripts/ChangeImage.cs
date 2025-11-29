@@ -6,7 +6,7 @@ public class ChangeImage : MonoBehaviour
 {
     public Image imageThis;
     public List<Sprite> sprites = new List<Sprite>();
-    private PickupItems pickupItems;
+    [SerializeField] private PickupItems pickupItems;
 
 
     void Start()
@@ -18,14 +18,14 @@ public class ChangeImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (true)
-        {
-            imageThis.sprite = sprites[0];
-        }
-        // else if (pickupItems.inventory.TryGetValue("glue", out int vale))
+        // if (pickupItems.inventory.ContainsKey(pickupItems.realItemHoney))
         // {
         //     imageThis.sprite = sprites[1];
         // }
+        // else if (pickupItems.inventory.ContainsKey(pickupItems.realItemGlue))
+        // {
+        //     imageThis.sprite = sprites[0];
+        // }
+        
     }
 }

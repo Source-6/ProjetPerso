@@ -4,28 +4,33 @@ using System.Collections.Generic;
 
 public class ChangeImage : MonoBehaviour
 {
-    public Image imageThis;
-    public List<Sprite> sprites = new List<Sprite>();
+    public Image imageFirst;
+    public Image imageSecond;
     [SerializeField] private PickupItems pickupItems;
-
+    [SerializeField] GameObject ParentFirstImage;
+    [SerializeField] GameObject ParentSecondImage;
 
     void Start()
     {
-        imageThis = GetComponent<Image>();
+        ParentFirstImage.SetActive(false);
+        ParentSecondImage.SetActive(false);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (pickupItems.inventory.ContainsKey(pickupItems.realItemHoney))
-        // {
-        //     imageThis.sprite = sprites[1];
-        // }
-        // else if (pickupItems.inventory.ContainsKey(pickupItems.realItemGlue))
-        // {
-        //     imageThis.sprite = sprites[0];
-        // }
-        
+        if (pickupItems.item == null) return;
+
+        if (pickupItems.inventory.ContainsKey(pickupItems.realItemGlue))
+        {
+            ParentFirstImage.SetActive(true);
+        }
+        else if (pickupItems.inventory.ContainsKey(pickupItems.realItemHoney))
+        {
+            ParentSecondImage.SetActive(true);
+        }
+
+
     }
 }

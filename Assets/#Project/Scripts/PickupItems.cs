@@ -68,7 +68,7 @@ public class PickupItems : MonoBehaviour
     [SerializeField] public GameObject fakeItem;
     public Dictionary<GameObject, int> inventory = new Dictionary<GameObject, int>();
     
-    private Item item;
+    public Item item;
     
     public GameObject realItemGlue;
     public GameObject realItemHoney;
@@ -97,8 +97,8 @@ public class PickupItems : MonoBehaviour
                 Destroy(fakeItem);
                 Debug.Log(inventory[realItemGlue]);
                 Debug.Log(inventory.TryGetValue(realItemGlue, out int val));
-                
-                
+
+
             }
             else if (item.itemType == Item.ItemType.HoneyFake)
             {
@@ -108,6 +108,7 @@ public class PickupItems : MonoBehaviour
 
                 Debug.Log(inventory[realItemHoney]);
                 Debug.Log(inventory.TryGetValue(realItemHoney, out int val));
+                inventory.Remove(realItemGlue);
 
             }
          

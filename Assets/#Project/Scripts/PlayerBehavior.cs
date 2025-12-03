@@ -45,10 +45,11 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] EnemyBehavior enemy;
     [SerializeField] public int playerLife;
 
-    //PickupItems :
+    //Items :
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private PickupItems pickupItems;
-
+    [SerializeField] private CraftingItems craftingItems;
+    [SerializeField] private GameObject trap;
     
 
     public void Initialize()
@@ -76,9 +77,16 @@ public class PlayerBehavior : MonoBehaviour
 
     }
 
-    public void Update()
+    public void Process()
     {
-
+        if (!craftingItems.canCraft)
+        {
+            craftingItems.Craft();
+        }
+        else if (craftingItems.canCraft)
+        {
+            trap = Instantiate(trap);
+        }
     }
 
 

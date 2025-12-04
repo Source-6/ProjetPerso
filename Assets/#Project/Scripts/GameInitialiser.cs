@@ -15,6 +15,10 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] EnemyBehavior enemy;
 
     [Space]
+    [Header("UI elements")]
+    [SerializeField] InteractWithButton buttons;
+
+    [Space]
     [Header("Game Manager")]
     [SerializeField] GameManager gameManager;
 
@@ -42,6 +46,7 @@ public class GameInitializer : MonoBehaviour
         // roomMaker.Initialise();
         // ground.Initialize();
         player.Initialize();
+        buttons.Initialize();
     }
 
 }

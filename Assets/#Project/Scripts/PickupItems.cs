@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -61,63 +61,70 @@ public class PickupItems : MonoBehaviour
     // {
     //     canPickUp = false;
     // }
+
+
+
+    // --- old pickup 
+    // public void PickUpItem()
+    // {
+    //     if (canPickUp)
+    //     {
+    //         item = fakeItem.GetComponent<Item>();
+    //         if (item.itemType == Item.ItemType.GlueFake)
+    //         {
+    //             inventory.Add(realItemGlue, 1);
+    //             Destroy(fakeItem);
+    //             Debug.Log(inventory[realItemGlue]);
+    //             Debug.Log(inventory.TryGetValue(realItemGlue, out int val));
+
+
+    //         }
+    //         else if (item.itemType == Item.ItemType.HoneyFake)
+    //         {
+    //             inventory.Add(realItemHoney, 1);
+
+    //             Destroy(fakeItem);
+
+    //             Debug.Log(inventory[realItemHoney]);
+    //             Debug.Log(inventory.TryGetValue(realItemHoney, out int val));
+    //             inventory.Remove(realItemGlue);
+
+    //         }
+
+
+    //         // realItems.Add(realItem);
+    //         // Destroy(fakeItem);
+    //         // testint++;
+    //         // testItem.text = testint.ToString();
+    //         // Debug.Log(realItems.Count);
+    //     }
+    // }
     #endregion
 
 
     [SerializeField] private InputActionAsset actions;
+    public UnityEvent<ItemType> onItemPickup;
     [SerializeField] public GameObject fakeItem;
-    public Dictionary<GameObject, int> inventory = new Dictionary<GameObject, int>();
+    public Dictionary<ItemType, int> inventory = new();
     
     public Item item;
-    
-    public GameObject realItemGlue;
-    public GameObject realItemHoney;
 
     [SerializeField] private TMP_Text testItem;
-
-
-
-
 
     private bool canPickUp = false;
     public bool inInventory = false;
     // private bool canMakeTrap = false;
 
-
-
-
+    
     public void PickUpItem()
     {
         if (canPickUp)
         {
             item = fakeItem.GetComponent<Item>();
-            if (item.itemType == Item.ItemType.GlueFake)
-            {
-                inventory.Add(realItemGlue, 1);
-                Destroy(fakeItem);
-                Debug.Log(inventory[realItemGlue]);
-                Debug.Log(inventory.TryGetValue(realItemGlue, out int val));
-
-
-            }
-            else if (item.itemType == Item.ItemType.HoneyFake)
-            {
-                inventory.Add(realItemHoney, 1);
-
-                Destroy(fakeItem);
-
-                Debug.Log(inventory[realItemHoney]);
-                Debug.Log(inventory.TryGetValue(realItemHoney, out int val));
-                inventory.Remove(realItemGlue);
-
-            }
+            inventory.Add(item.itemType, 1);
+            Destroy(fakeItem);
+            onItemPickup?.Invoke(item.itemType);
          
-            
-            // realItems.Add(realItem);
-            // Destroy(fakeItem);
-            // testint++;
-            // testItem.text = testint.ToString();
-            // Debug.Log(realItems.Count);
         }
     }
 
@@ -127,7 +134,6 @@ public class PickupItems : MonoBehaviour
         {
             canPickUp = true;
             fakeItem = other.gameObject;
-            // inInventory = true;
             
         }
     }

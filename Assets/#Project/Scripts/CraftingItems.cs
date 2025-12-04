@@ -4,18 +4,15 @@ public class CraftingItems : MonoBehaviour
 {
     [SerializeField] private PickupItems pickupItems;
     public bool canCraft = false;
-    
 
-    public void Craft()
+
+    public void CanCraft()
     {
-        if (!canCraft)
+        if (pickupItems.inventory.ContainsKey(ItemType.Glue) && pickupItems.inventory.ContainsKey(ItemType.Honey))
         {
-            if (pickupItems.inventory.ContainsKey(pickupItems.realItemHoney) && pickupItems.inventory.ContainsKey(pickupItems.realItemGlue))
-            {
-                canCraft = true;
-            }
-
-
+            canCraft = true;
         }
     }
+
+
 } 

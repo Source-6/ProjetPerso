@@ -17,19 +17,40 @@ public class ChangeImage : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    public void UpdateSlots(ItemType itemType)
+    {
+        switch (itemType)
+        {
+            case ItemType.Glue:
+                ParentFirstImage.SetActive(true);
+                break;
+
+            case ItemType.Honey:
+                ParentSecondImage.SetActive(true);
+                break;
+        }
+    }
+
     void Update()
     {
-        if (pickupItems.item == null) return;
+        
+        // if (pickupItems.item == null) return;
 
-        if (pickupItems.inventory.ContainsKey(pickupItems.realItemGlue))
-        {
-            ParentFirstImage.SetActive(true);
-        }
-        else if (pickupItems.inventory.ContainsKey(pickupItems.realItemHoney))
-        {
-            ParentSecondImage.SetActive(true);
-        }
+        // if (pickupItems.inventory.ContainsKey(ItemType.Glue))
+        // {
+        //     ParentFirstImage.SetActive(true);
+        // }
+        // else if (pickupItems.inventory.ContainsKey(ItemType.Honey))
+        // {
+        //     ParentSecondImage.SetActive(true);
+        // }
+
+        // if (pickupItems.inventory.Count == 0)
+        // {
+        //     Debug.Log("something happened...");
+        //     ParentFirstImage.SetActive(false);
+        //     ParentSecondImage.SetActive(false);
+        // }
 
 
     }

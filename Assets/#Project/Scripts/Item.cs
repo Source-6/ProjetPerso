@@ -1,12 +1,12 @@
 using UnityEngine;
 
 
+public enum ItemType
+    {
+        Glue,
+        Honey,
+    }
 public class Item : MonoBehaviour
 {
-    public enum ItemType
-    {
-        GlueFake,
-        HoneyFake,
-    }
     public ItemType itemType;
 }

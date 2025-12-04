@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 834595345285903377}
   - component: {fileID: 8337780879348133156}
   - component: {fileID: 7710318081390979452}
-  - component: {fileID: 8395565510049343008}
+  - component: {fileID: 4634166090610357533}
   m_Layer: 0
   m_Name: RealHoney
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8395565510049343008
+--- !u!114 &4634166090610357533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8621257004274517132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b41421edac6c5439d2d3ae343eef24, type: 3}
+  m_Script: {fileID: 11500000, guid: 44d91508ddd8d3545b2966be8b73016e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
+  m_EditorClassIdentifier: Assembly-CSharp::Item
   itemType: 1

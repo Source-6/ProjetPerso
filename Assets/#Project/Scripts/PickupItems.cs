@@ -122,10 +122,11 @@ public class PickupItems : MonoBehaviour
         if (canPickUp)
         {
             item = fakeItem.GetComponent<Item>();
+            if (inventory.ContainsKey(item.itemType)) return;
             inventory.Add(item.itemType, 1);
             Destroy(fakeItem);
             onItemPickup?.Invoke(item.itemType);
-         
+
         }
     }
 

@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class InteractWithButton : MonoBehaviour
 {
+    [SerializeField] Transform playerPos;
     [SerializeField] CraftingItems craftingItems;
     [SerializeField] Button craftButton;
+    [SerializeField] Button placeTrapButton;
     [SerializeField] private GameObject trap;
     [SerializeField] private PickupItems pickupItems;
     public int trapCount;
@@ -16,8 +18,13 @@ public class InteractWithButton : MonoBehaviour
     {
         craftButton = craftButton.GetComponent<Button>();
         craftButton.interactable = false;
-        craftButton.onClick.AddListener(TaskOnClick);
+        craftButton.onClick.AddListener(CreateTrap);
         trapCount = 0;
+
+        placeTrapButton = placeTrapButton.GetComponent<Button>();
+        placeTrapButton.interactable = false;
+        placeTrapButton.onClick.AddListener(PlaceTrap);
+
 
     }
 
@@ -27,17 +34,26 @@ public class InteractWithButton : MonoBehaviour
         {
             craftButton.interactable = true;
         }
+        if (trapCount >= 1)
+        {
+            placeTrapButton.interactable = true;
+        }
     }
 
-    public void TaskOnClick()
+    public void CreateTrap()
     {
         if (trapCount == 0)
         {
-            trap = Instantiate(trap);
-            Debug.Log($"before : {pickupItems.inventory.Count}");
+            
             pickupItems.inventory.Clear();
-            Debug.Log($"after : {pickupItems.inventory.Count}");
+            pickupItems.inventory.Add(ItemType.Trap, 1);
             trapCount++;
         }
+    }
+
+    public void PlaceTrap()
+    {
+        trap.transform.position = playerPos.position + Vector3.forward * 2 + Vector3.up *2;
+        trap = Instantiate(trap);
     }
 }

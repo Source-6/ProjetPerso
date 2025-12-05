@@ -2,9 +2,10 @@ using UnityEngine;
 
 
 public enum ItemType
-    {
-        Glue,
-        Honey,
+{
+    Glue,
+    Honey,
+    Trap,
     }
 public class Item : MonoBehaviour
 {

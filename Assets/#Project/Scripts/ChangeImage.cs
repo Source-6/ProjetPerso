@@ -34,6 +34,7 @@ public class ChangeImage : MonoBehaviour
     void Update()
     {
         
+        
         // if (pickupItems.item == null) return;
 
         // if (pickupItems.inventory.ContainsKey(ItemType.Glue))

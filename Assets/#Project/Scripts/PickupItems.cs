@@ -103,16 +103,17 @@ public class PickupItems : MonoBehaviour
 
 
     [SerializeField] private InputActionAsset actions;
-    public UnityEvent<ItemType> onItemPickup;
     [SerializeField] public GameObject fakeItem;
+    public UnityEvent<ItemType> onItemPickup;
+    
     public Dictionary<ItemType, int> inventory = new();
     
     public Item item;
 
-    [SerializeField] private TMP_Text testItem;
+    // [SerializeField] private TMP_Text testItem;
 
     private bool canPickUp = false;
-    public bool inInventory = false;
+
     // private bool canMakeTrap = false;
 
     
@@ -130,7 +131,7 @@ public class PickupItems : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Pickupable" && !inInventory)
+        if (other.gameObject.tag == "Pickupable")
         {
             canPickUp = true;
             fakeItem = other.gameObject;

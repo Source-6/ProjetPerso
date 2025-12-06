@@ -50,7 +50,7 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private PickupItems pickupItems;
     [SerializeField] private CraftingItems craftingItems;
     [SerializeField] private GameObject craftingStation;
-
+    public bool canCraft;
 
 
     public void Initialize()
@@ -87,7 +87,20 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == "CraftingStation")
         {
-            craftingItems.CanCraft();
+            if (pickupItems.inventory.ContainsKey(ItemType.Glue) && pickupItems.inventory.ContainsKey(ItemType.Honey))
+            {
+                canCraft = true;
+                Debug.Log("enter");
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "CraftingStation")
+        {
+            canCraft = false;
+            Debug.Log("exit");
         }
     }
 

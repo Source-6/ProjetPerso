@@ -61,7 +61,6 @@ public class InteractWithDoor : MonoBehaviour
         }
         if (closeDoor)  
         {
-            Debug.Log("exit (close door)");
             doorIsOpen = false;
 
             animator.SetBool("isOpenning", doorIsOpen);
@@ -89,7 +88,6 @@ public class InteractWithDoor : MonoBehaviour
             canOpenDoor = false;
             doorIsOpen = false;
             closeDoor = true;
-            Debug.Log("exit collider");
             DoorReaction();
         }
     }

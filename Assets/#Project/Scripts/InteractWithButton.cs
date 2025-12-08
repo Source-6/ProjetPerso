@@ -39,7 +39,7 @@ public class InteractWithButton : MonoBehaviour
         {
             craftButton.interactable = false;
         }
-        if (trapCount >= 1)
+        if (pickupItems.inventory.ContainsKey(ItemType.Trap))
         {
             placeTrapButton.interactable = true;
         }
@@ -47,23 +47,22 @@ public class InteractWithButton : MonoBehaviour
 
     public void CreateTrap()
     {
-        if (trapCount <= 0)
+        if (!pickupItems.inventory.ContainsKey(ItemType.Trap))
         {
             pickupItems.inventory.Clear();
             pickupItems.inventory.Add(ItemType.Trap, 1);
             Debug.Log(pickupItems.inventory.Count);
-            trapCount++;
             player.canCraft = false;
         }
     }
 
     public void PlaceTrap()
     {
-        if (trapCount == 1)
+        if (pickupItems.inventory.ContainsKey(ItemType.Trap))
         {
             trap.transform.position = player.transform.position + Vector3.forward * 2 + Vector3.up * 2;
             trap = Instantiate(trap);
-            trapCount--;
+            pickupItems.inventory.Clear();
             placeTrapButton.interactable = false;
             
         }

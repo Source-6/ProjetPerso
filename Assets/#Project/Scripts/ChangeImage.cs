@@ -10,6 +10,7 @@ public class ChangeImage : MonoBehaviour
     [SerializeField] GameObject ParentFirstImage;
     [SerializeField] GameObject ParentSecondImage;
 
+
     void Start()
     {
         ParentFirstImage.SetActive(false);

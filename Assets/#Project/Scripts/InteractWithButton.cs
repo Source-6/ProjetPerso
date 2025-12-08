@@ -60,7 +60,7 @@ public class InteractWithButton : MonoBehaviour
     {
         if (pickupItems.inventory.ContainsKey(ItemType.Trap))
         {
-            trap.transform.position = player.transform.position + Vector3.forward * 2 + Vector3.up * 2;
+            trap.transform.position = player.transform.position + Vector3.forward * 2 + Vector3.up;
             trap = Instantiate(trap);
             pickupItems.inventory.Clear();
             placeTrapButton.interactable = false;

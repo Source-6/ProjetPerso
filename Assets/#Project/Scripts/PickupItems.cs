@@ -109,14 +109,15 @@ public class PickupItems : MonoBehaviour
     public Dictionary<ItemType, int> inventory = new();
     
     public Item item;
-
-    // [SerializeField] private TMP_Text testItem;
-
     private bool canPickUp = false;
 
+
+
+    // [SerializeField] private TMP_Text testItem;
     // private bool canMakeTrap = false;
 
-    
+
+
     public void PickUpItem()
     {
         if (canPickUp)

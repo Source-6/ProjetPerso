@@ -9,7 +9,7 @@ public class InteractWithButton : MonoBehaviour
     [SerializeField] Button placeTrapButton;
     [SerializeField] private GameObject trap;
     [SerializeField] private PickupItems pickupItems;
-    private ChangeImage changeImage;
+    [SerializeField] private ChangeImage changeImage;
     public int trapCount;
     [SerializeField] private int maxTrapCount;
 
@@ -52,8 +52,9 @@ public class InteractWithButton : MonoBehaviour
             pickupItems.inventory.Clear();
             pickupItems.inventory.Add(ItemType.Trap, 1);
             Debug.Log(pickupItems.inventory.Count);
-
+            changeImage.UpdateSlots(ItemType.Trap);
             player.canCraft = false;
+
         }
     }
 

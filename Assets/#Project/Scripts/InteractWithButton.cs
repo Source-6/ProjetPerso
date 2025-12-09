@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class InteractWithButton : MonoBehaviour
 {
     [SerializeField] PlayerBehavior player;
-    [SerializeField] CraftingItems craftingItems;
     [SerializeField] Button craftButton;
     [SerializeField] Button placeTrapButton;
     [SerializeField] private GameObject trap;
     [SerializeField] private PickupItems pickupItems;
+    private ChangeImage changeImage;
     public int trapCount;
     [SerializeField] private int maxTrapCount;
 
@@ -52,6 +52,7 @@ public class InteractWithButton : MonoBehaviour
             pickupItems.inventory.Clear();
             pickupItems.inventory.Add(ItemType.Trap, 1);
             Debug.Log(pickupItems.inventory.Count);
+
             player.canCraft = false;
         }
     }

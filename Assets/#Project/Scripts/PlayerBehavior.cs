@@ -48,7 +48,6 @@ public class PlayerBehavior : MonoBehaviour
     //Items :
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private PickupItems pickupItems;
-    [SerializeField] private CraftingItems craftingItems;
     [SerializeField] private GameObject craftingStation;
     public bool canCraft;
 
@@ -80,7 +79,6 @@ public class PlayerBehavior : MonoBehaviour
 
     public void Process()
     {
-        // craftingItems.CanCraft();
     }
 
     void OnTriggerEnter(Collider other)

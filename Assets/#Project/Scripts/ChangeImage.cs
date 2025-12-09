@@ -6,15 +6,18 @@ public class ChangeImage : MonoBehaviour
 {
     public Image imageFirst;
     public Image imageSecond;
+    public Image imageThird;
     [SerializeField] private PickupItems pickupItems;
     [SerializeField] GameObject ParentFirstImage;
     [SerializeField] GameObject ParentSecondImage;
+    [SerializeField] GameObject ParentThirdImage;
 
 
     void Start()
     {
         ParentFirstImage.SetActive(false);
         ParentSecondImage.SetActive(false);
+        ParentThirdImage.SetActive(false);
         
     }
 
@@ -28,6 +31,10 @@ public class ChangeImage : MonoBehaviour
 
             case ItemType.Honey:
                 ParentSecondImage.SetActive(true);
+                break;
+            
+            case ItemType.Trap:
+                ParentThirdImage.SetActive(true);
                 break;
         }
     }

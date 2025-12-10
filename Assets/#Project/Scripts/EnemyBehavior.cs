@@ -16,24 +16,33 @@ public class EnemyBehavior : MonoBehaviour
     }
     private EnemyState state;
 
+    [Header("Path")]
+    [Space]
     [SerializeField] List<Transform> transforms;
     NavMeshAgent agent;
     private int rdn;
 
+    [Header("Player")]
+    [Space]
+
     [SerializeField] private Transform playerTransform;
     [SerializeField] private PlayerBehavior player;
+    private bool canSeePlayer = false;
     [SerializeField] float maxDistChase;
     [SerializeField] float maxAngle;
+
+    [Header("Destroy")]
+    [Space]
     [SerializeField] float maxDistWall;
     private GameObject destroyableWall;
     private GameObject destroyableDoor;
     private bool canDestroyDoor;
-
-    private bool canSeePlayer = false;
     private bool canDestroyWall = false;
+
+    [Header("Cooldowns")]
+    [Space]
     [SerializeField] private float coolDownBefore;
     [SerializeField] private float coolDownAfter;
-
     private float visibilityCooldown = 3f;
     private float visibilityCooldownTimer = 0f;
 
@@ -50,7 +59,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(state);
+        Debug.Log(state);
         RayHittingSomething();
 
         switch (state)
@@ -62,6 +71,7 @@ public class EnemyBehavior : MonoBehaviour
                 }
                 if (canSeePlayer)
                 {
+                    Debug.Log("see player");
                     state = EnemyState.Chase;
                 }
                 if (canDestroyWall || canDestroyDoor)
@@ -84,7 +94,7 @@ public class EnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Attacking:
-                agent.SetDestination(player.transform.position);
+                agent.SetDestination(playerTransform.position);
                 Debug.Log("attacking");
                 break;
 
@@ -165,6 +175,7 @@ public class EnemyBehavior : MonoBehaviour
                 if (Vector3.Angle(transform.forward, direction) <= maxAngle)
                 {
                     canSeePlayer = true;
+                    Debug.Log("see player");
                     if (visibilityCooldownTimer <= 0)
                     {
                         StartCoroutine(PlayerVisibilityCooldown());
@@ -205,12 +216,12 @@ public class EnemyBehavior : MonoBehaviour
         canDestroyDoor = false;
     }
 
-    void EnnemyAttack()
-    {
-        if (player.playerLife > 0)
-        {
-            player.playerLife -= 1;
-        }
-    }
+    // void EnnemyAttack()
+    // {
+    //     if (player.playerLife > 0)
+    //     {
+    //         player.playerLife -= 1;
+    //     }
+    // }
 
 }

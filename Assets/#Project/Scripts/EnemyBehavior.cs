@@ -25,7 +25,7 @@ public class EnemyBehavior : MonoBehaviour
     [Header("Player")]
     [Space]
 
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private GameObject player;
     private bool canSeePlayer = false;
     [SerializeField] float maxDistChase;
     [SerializeField] float maxAngle;
@@ -58,7 +58,6 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
         RayHittingSomething();
 
         switch (state)
@@ -70,7 +69,6 @@ public class EnemyBehavior : MonoBehaviour
                 }
                 if (canSeePlayer)
                 {
-                    Debug.Log("see player");
                     state = EnemyState.Chase;
                 }
                 if (canDestroyWall || canDestroyDoor)
@@ -80,11 +78,11 @@ public class EnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Chase:
-                agent.SetDestination(playerTransform.position);
-                if (transform.position == playerTransform.position + transform.forward)
+                agent.SetDestination(player.transform.position);
+                if (transform.position == player.transform.position + transform.forward)
                 {
                     state = EnemyState.Attacking;
-                
+
                 }
                 if (!canSeePlayer)
                 {
@@ -93,7 +91,7 @@ public class EnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Attacking:
-                agent.SetDestination(playerTransform.position);
+                agent.SetDestination(player.transform.position);
                 Debug.Log("attacking");
                 break;
 
@@ -113,11 +111,13 @@ public class EnemyBehavior : MonoBehaviour
                     // Debug.Log(coolDownBefore);
                     if (coolDownBefore <= 0f)
                     {
-                        if (canDestroyDoor){
+                        if (canDestroyDoor)
+                        {
                             canDestroyWall = false;
                             DestroyObject(destroyableDoor);
                         }
-                        else if (canDestroyWall){
+                        else if (canDestroyWall)
+                        {
                             canDestroyDoor = false;
                             DestroyObject(destroyableWall);
                         }
@@ -160,6 +160,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void RayHittingSomething()
     {
+
         RaycastHit hit;
         float randomOffset = Random.Range(-1f, 1f) * Mathf.Tan(Mathf.Deg2Rad * maxAngle * 0.5f);  //choose a random point in the desired area (and convert it to rad)
         Vector3 direction = transform.forward + (transform.right * randomOffset);
@@ -171,6 +172,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
+                Debug.Log("touch player");
                 if (Vector3.Angle(transform.forward, direction) <= maxAngle)
                 {
                     canSeePlayer = true;

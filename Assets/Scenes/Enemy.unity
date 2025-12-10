@@ -1186,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: maxAngle
-      value: 90
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: maxDistChase

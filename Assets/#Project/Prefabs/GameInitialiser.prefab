@@ -47,4 +47,5 @@ MonoBehaviour:
   ground: {fileID: 8656499702805148623, guid: 4c7d9953438db9949914865483c083f0, type: 3}
   player: {fileID: 1642473086795033649, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
   enemy: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+  buttons: {fileID: 6652314590192306900, guid: 489a270feb607a6459acdb8c7bfbd195, type: 3}
   gameManager: {fileID: 9214775690835369190, guid: d87caabb0b4952644901553ab9274c8b, type: 3}

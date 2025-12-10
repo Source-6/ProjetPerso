@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522d79e629401064d8db5fa3476e40d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 0}
+  interactWithButton: {fileID: 6652314590192306900, guid: 489a270feb607a6459acdb8c7bfbd195, type: 3}

@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: maxDistChase
-      value: 2
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: coolDownAfter
@@ -626,6 +626,14 @@ PrefabInstance:
       propertyPath: 'transforms.Array.data[2]'
       value: 
       objectReference: {fileID: 1194780174}
+    - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+      propertyPath: 'transforms.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1194780174}
+    - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+      propertyPath: 'transforms.Array.data[4]'
+      value: 
+      objectReference: {fileID: 701761012}
     - target: {fileID: 4712860175340928110, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: m_Name
       value: Enemy

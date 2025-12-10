@@ -621,11 +621,11 @@ PrefabInstance:
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: 'transforms.Array.data[1]'
       value: 
-      objectReference: {fileID: 289098852}
+      objectReference: {fileID: 701761012}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: 'transforms.Array.data[2]'
       value: 
-      objectReference: {fileID: 289098852}
+      objectReference: {fileID: 1194780174}
     - target: {fileID: 4712860175340928110, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -650,6 +650,10 @@ PrefabInstance:
     - target: {fileID: 1163719261863178743, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642473086795033649, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3684543379901864952, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: enemy

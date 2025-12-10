@@ -26,7 +26,6 @@ public class EnemyBehavior : MonoBehaviour
     [Space]
 
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private PlayerBehavior player;
     private bool canSeePlayer = false;
     [SerializeField] float maxDistChase;
     [SerializeField] float maxAngle;
@@ -166,7 +165,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 direction = transform.forward + (transform.right * randomOffset);
 
 
-        Debug.DrawLine(transform.position + Vector3.up * -0.3f, transform.position + Vector3.up * -0.3f + direction * maxDistChase);
+        Debug.DrawLine(transform.position + Vector3.up * -0.3f,  transform.position + Vector3.up * -0.3f + direction * maxDistChase);
 
         if (Physics.Raycast(transform.position + (Vector3.up * -0.3f), direction, out hit, maxDistChase))
         {

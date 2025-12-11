@@ -13,6 +13,7 @@ public class EnemyBehavior : MonoBehaviour
         Chase,
         Destroying,
         Attacking,
+        Hurting,
     }
     private EnemyState state;
 
@@ -38,6 +39,16 @@ public class EnemyBehavior : MonoBehaviour
     private bool canDestroyDoor;
     private bool canDestroyWall = false;
 
+    [Header("Traps")]
+    [Space]
+
+    [SerializeField] private int enemyLife;
+    private bool isHurting;
+    [SerializeField] private GameObject trap;
+
+
+
+
     [Header("Cooldowns")]
     [Space]
     [SerializeField] private float coolDownBefore;
@@ -59,6 +70,7 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         RayHittingSomething();
+        // Debug.Log(state);
 
         switch (state)
         {
@@ -75,6 +87,10 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     state = EnemyState.Destroying;
                 }
+                if (isHurting)
+                {
+                    state = EnemyState.Hurting;
+                }
                 break;
 
             case EnemyState.Chase:
@@ -87,6 +103,10 @@ public class EnemyBehavior : MonoBehaviour
                 if (!canSeePlayer)
                 {
                     state = EnemyState.Patrol;
+                }
+                if (isHurting)
+                {
+                    state = EnemyState.Hurting;
                 }
                 break;
 
@@ -108,7 +128,6 @@ public class EnemyBehavior : MonoBehaviour
                 if (agent.remainingDistance < 1f && coolDownBefore > 0)
                 {
                     coolDownBefore -= Time.deltaTime;
-                    // Debug.Log(coolDownBefore);
                     if (coolDownBefore <= 0f)
                     {
                         if (canDestroyDoor)
@@ -126,6 +145,14 @@ public class EnemyBehavior : MonoBehaviour
                     }
                 }
                 break;
+
+            case EnemyState.Hurting:
+                agent.SetDestination(transform.position);
+                GetsStuck();
+
+                //no other state changes bc enemy should be stuck here ??
+                break;
+
         }
     }
 
@@ -166,7 +193,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 direction = transform.forward + (transform.right * randomOffset);
 
 
-        Debug.DrawLine(transform.position + Vector3.up * -0.3f,  transform.position + Vector3.up * -0.3f + direction * maxDistChase);
+        Debug.DrawLine(transform.position + Vector3.up * -0.3f, transform.position + Vector3.up * -0.3f + direction * maxDistChase);
 
         if (Physics.Raycast(transform.position + (Vector3.up * -0.3f), direction, out hit, maxDistChase))
         {
@@ -215,6 +242,30 @@ public class EnemyBehavior : MonoBehaviour
         Debug.Log("destroy wall");
         canDestroyWall = false;
         canDestroyDoor = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<TrapItem>())
+        {
+            isHurting = true;
+            Debug.Log(isHurting);
+
+        }
+    }
+
+    void GetsHurt(int damage)
+    {
+        if (enemyLife > 0)
+        {
+            enemyLife -= damage;
+            Debug.Log(enemyLife);
+        }
+    }
+
+    void GetsStuck()
+    {
+        transform.Rotate(0,0,90);
     }
 
     // void EnnemyAttack()

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4024950726051041909}
   - component: {fileID: 519570024135733908}
   - component: {fileID: 5242340353332875537}
+  - component: {fileID: -8700549784121899424}
+  - component: {fileID: -3284794800894857395}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2869650621370465046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.522491, y: 1.1249982, z: 59.048916}
+  m_LocalPosition: {x: 23.625065, y: 1.1950012, z: 43.878597}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -110,5 +112,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 25, y: 30, z: 35}
+  m_Size: {x: 60, y: 30, z: 80}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &-8700549784121899424
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869650621370465046}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8.745001, y: 6.51, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &-3284794800894857395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869650621370465046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a632bbaa7389843bad243c9d684ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrapItem
+  itemType: 2
+  damage: 10

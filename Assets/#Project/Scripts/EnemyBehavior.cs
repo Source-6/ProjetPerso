@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.AI;
 
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyBehavior : MonoBehaviour
 {
@@ -140,7 +141,7 @@ public class EnemyBehavior : MonoBehaviour
                             canDestroyDoor = false;
                             DestroyObject(destroyableWall);
                         }
-                        Invoke(nameof(SetStateToPatrol), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
+                        // Invoke(nameof(SetStateTo(EnemyState.Attacking)), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
                         ResetCooldowns();
                     }
                 }
@@ -156,9 +157,9 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    void SetStateToPatrol()
+    void SetStateTo(EnemyState enemyState)
     {
-        state = EnemyState.Patrol;
+        state = enemyState;
     }
 
     void ResetCooldowns()

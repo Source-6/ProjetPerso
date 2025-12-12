@@ -9,7 +9,7 @@ public class InteractWithDoor : MonoBehaviour
 
     [SerializeField]private Transform door;
     private bool doorIsOpen;
-    private bool canOpenDoor;
+    public bool canOpenDoor;
     private bool closeDoor;
 
     private Animator animator;

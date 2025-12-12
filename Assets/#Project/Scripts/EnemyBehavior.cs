@@ -71,7 +71,7 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         RayHittingSomething();
-        // Debug.Log(state);
+        Debug.Log(state);
 
         switch (state)
         {
@@ -95,8 +95,8 @@ public class EnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Chase:
-                agent.SetDestination(player.transform.position);
-                if (transform.position == player.transform.position + transform.forward)
+                agent.SetDestination(player.transform.position +transform.forward*2);
+                if (transform.position == player.transform.position + transform.forward*2)
                 {
                     state = EnemyState.Attacking;
 
@@ -107,7 +107,7 @@ public class EnemyBehavior : MonoBehaviour
                 }
                 if (isHurting)
                 {
-                    state = EnemyState.Hurting;
+                    StartCoroutine(SetStateTo(EnemyState.Hurting));
                 }
                 break;
 
@@ -141,8 +141,9 @@ public class EnemyBehavior : MonoBehaviour
                             canDestroyDoor = false;
                             DestroyObject(destroyableWall);
                         }
-                        // Invoke(nameof(SetStateTo(EnemyState.Attacking)), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
-                        ResetCooldowns();
+                        StartCoroutine(SetStateTo(EnemyState.Patrol));
+                        // Invoke(nameof(SetStateTo(EnemyState.Patrol)), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
+                        // ResetCooldowns();
                     }
                 }
                 break;
@@ -157,18 +158,24 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    void SetStateTo(EnemyState enemyState)
-    {
-        state = enemyState;
-    }
+    // void SetStateTo(EnemyState enemyState)
+    // {
+    //     state = enemyState;
+    // }
 
+    IEnumerator SetStateTo(EnemyState enemyState)
+    {
+        yield return new WaitForSeconds(coolDownAfter);
+        state = enemyState;
+        ResetCooldowns();
+    }
     void ResetCooldowns()
     {
         coolDownBefore = 2f;
         coolDownAfter = 2f;
     }
 
-    void ChooseDestination()
+    void ChooseDestination()  //modify this one to create path
     {
         rdn = Random.Range(0, transforms.Count);
         agent.SetDestination(transforms[rdn].position);
@@ -200,11 +207,9 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("touch player");
                 if (Vector3.Angle(transform.forward, direction) <= maxAngle)
                 {
                     canSeePlayer = true;
-                    Debug.Log("see player");
                     if (visibilityCooldownTimer <= 0)
                     {
                         StartCoroutine(PlayerVisibilityCooldown());

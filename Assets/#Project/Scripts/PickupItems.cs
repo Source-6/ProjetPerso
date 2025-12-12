@@ -109,7 +109,8 @@ public class PickupItems : MonoBehaviour
     public Dictionary<ItemType, int> inventory = new();
     
     public Item item;
-    private bool canPickUp = false;
+    public bool canPickUp = false; //must hide in inspector
+    
 
 
 

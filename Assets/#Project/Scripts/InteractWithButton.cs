@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class InteractWithButton : MonoBehaviour
 {
-    [SerializeField] PlayerBehavior player;
+    [SerializeField] private PlayerBehavior player;
     [SerializeField] Button craftButton;
     [SerializeField] Button placeTrapButton;
     [SerializeField] private GameObject trap;
@@ -12,6 +12,7 @@ public class InteractWithButton : MonoBehaviour
     [SerializeField] private ChangeImage changeImage;
     public int trapCount;
     [SerializeField] private int maxTrapCount;
+    [SerializeField] private int trapDistance;
 
 
 
@@ -25,7 +26,7 @@ public class InteractWithButton : MonoBehaviour
         placeTrapButton = placeTrapButton.GetComponent<Button>();
         placeTrapButton.interactable = false;
         placeTrapButton.onClick.AddListener(PlaceTrap);
-        
+
 
     }
 
@@ -62,7 +63,7 @@ public class InteractWithButton : MonoBehaviour
     {
         if (pickupItems.inventory.ContainsKey(ItemType.Trap))
         {
-            trap.transform.position = player.transform.position + Vector3.forward * 2 + Vector3.up;
+            trap.transform.position = player.transform.position + player.transform.forward * trapDistance + Vector3.up;
             trap = Instantiate(trap);
             pickupItems.inventory.Clear();
             placeTrapButton.interactable = false;

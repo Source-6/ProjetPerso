@@ -21,6 +21,7 @@ public class EnemyBehavior : MonoBehaviour
     [Header("Path")]
     [Space]
     [SerializeField] List<Transform> transforms;
+    [SerializeField] Transform startingPos;
     NavMeshAgent agent;
     private int rdn;
 
@@ -58,10 +59,14 @@ public class EnemyBehavior : MonoBehaviour
     private float visibilityCooldownTimer = 0f;
 
 
+    void Awake()
+    {
+        transform.position = startingPos.position;
+        
+    }
 
 
-
-    void Start()
+    public void Initialize()
     {
         agent = GetComponent<NavMeshAgent>();
         state = EnemyState.Patrol;

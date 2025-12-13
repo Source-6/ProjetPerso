@@ -380,12 +380,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingPos: {fileID: 0}
   player: {fileID: 0}
   maxDistChase: 3
-  maxAngle: 180
+  maxAngle: 90
   maxDistWall: 3
   enemyLife: 100
-  trap: {fileID: 0}
+  trap: {fileID: 2869650621370465046, guid: 2ceae542d771d8348a503dc134d6f01b, type: 3}
   coolDownBefore: 2
   coolDownAfter: 2
 --- !u!54 &6340050292750385397
@@ -411,7 +422,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

@@ -27,26 +27,23 @@ public class GameInitializer : MonoBehaviour
 
     void Start()
     {
-        // ObjectCreation();
         ObjectInitialise();
-        // Cursor.visible = true;
+        ObjectCreation();
 
 
     }
 
     private void ObjectCreation()
     {
-        // roomMaker = Instantiate(roomMaker);
-        // player = Instantiate(player);
-        
+        player = Instantiate(player);
+        enemy = Instantiate(enemy);
     }
 
     private void ObjectInitialise()
     {
-        // roomMaker.Initialise();
-        // ground.Initialize();
         player.Initialize();
         buttons.Initialize();
+        enemy.Initialize();
     }
 
 }

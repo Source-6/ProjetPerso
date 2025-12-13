@@ -29,7 +29,6 @@ public class EnemyBehavior : MonoBehaviour
     [Space]
 
     [SerializeField] private GameObject player;
-    private int playerLife;
     private bool canSeePlayer = false;
     private bool canAttack = false;
     [SerializeField] float maxDistChase;
@@ -59,12 +58,13 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float coolDownAfter;
     private float visibilityCooldown = 3f;
     private float visibilityCooldownTimer = 0f;
+    private float attackCooldown = 3f;
+    private float attackCooldownTimer = 0f;
 
 
     void Awake()
     {
         transform.position = startingPos.position;
-        
     }
 
 
@@ -73,7 +73,6 @@ public class EnemyBehavior : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         state = EnemyState.Patrol;
         ChooseDestination();
-        playerLife = player.GetComponent<PlayerBehavior>().playerLife;
     }
 
     void Update()
@@ -121,10 +120,13 @@ public class EnemyBehavior : MonoBehaviour
             case EnemyState.Attacking:
                 agent.SetDestination(player.transform.position);
                 EnnemyAttack();
-                Debug.Log("attacking");
                 break;
 
             case EnemyState.Destroying:
+                if (canSeePlayer)
+                {
+                    state = EnemyState.Chase;
+                }
                 if (destroyableWall != null)
                 {
                     agent.SetDestination(destroyableWall.transform.position);  //need to add an offset sor ennemy doesn't go around the wall to destroy it
@@ -153,6 +155,7 @@ public class EnemyBehavior : MonoBehaviour
                         // Invoke(nameof(SetStateTo(EnemyState.Patrol)), coolDownAfter);  //vu que change d'état, passe pas à ligne suivante ?
                         // ResetCooldowns();
                     }
+
                 }
                 break;
 
@@ -166,13 +169,26 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-
+        //Coroutines --
     IEnumerator SetStateTo(EnemyState enemyState)
     {
         yield return new WaitForSeconds(coolDownAfter);
         state = enemyState;
         ResetCooldowns();
     }
+    IEnumerator PlayerVisibilityCooldown()
+    {
+        visibilityCooldownTimer = visibilityCooldown;
+        while (visibilityCooldownTimer > 0)
+        {
+            visibilityCooldownTimer -= Time.deltaTime;
+            yield return true;
+        }
+        canSeePlayer = false;
+    }
+
+
+
     void ResetCooldowns()
     {
         coolDownBefore = 2f;
@@ -185,16 +201,6 @@ public class EnemyBehavior : MonoBehaviour
         agent.SetDestination(transforms[rdn].position);
     }
 
-    IEnumerator PlayerVisibilityCooldown()
-    {
-        visibilityCooldownTimer = visibilityCooldown;
-        while (visibilityCooldownTimer > 0)
-        {
-            visibilityCooldownTimer -= Time.deltaTime;
-            yield return true;
-        }
-        canSeePlayer = false;
-    }
 
 
     void RayHittingSomething()
@@ -284,9 +290,18 @@ public class EnemyBehavior : MonoBehaviour
 
     void EnnemyAttack()
     {
-        if (playerLife > 0)
+        Debug.Log("ennemy attack");
+        if (player.GetComponent<PlayerBehavior>().playerLife > 0)
         {
-            playerLife -= 1;
+            if (attackCooldownTimer >= 0 )
+                {
+                    attackCooldownTimer -= Time.deltaTime;
+                    player.GetComponent<PlayerBehavior>().playerLife --;
+                }
+            else
+            {
+                attackCooldownTimer = attackCooldown;
+            }
         }
     }
 

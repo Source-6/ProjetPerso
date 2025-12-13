@@ -15,6 +15,7 @@ TagManager:
   - Pickupable
   - Door
   - CraftingStation
+  - DistancePlayer
   layers:
   - Default
   - TransparentFX

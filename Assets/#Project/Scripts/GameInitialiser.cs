@@ -28,16 +28,10 @@ public class GameInitializer : MonoBehaviour
     void Start()
     {
         ObjectInitialise();
-        ObjectCreation();
 
 
     }
 
-    private void ObjectCreation()
-    {
-        player = Instantiate(player);
-        enemy = Instantiate(enemy);
-    }
 
     private void ObjectInitialise()
     {

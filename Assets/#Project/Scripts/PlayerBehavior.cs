@@ -79,6 +79,11 @@ public class PlayerBehavior : MonoBehaviour
 
     public void Process()
     {
+        if (playerLife <= 0)
+        {
+            Debug.Log("player is dead");
+        }
+        Debug.Log(playerLife);
     }
 
     void OnTriggerEnter(Collider other)

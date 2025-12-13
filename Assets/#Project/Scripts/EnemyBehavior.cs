@@ -29,7 +29,9 @@ public class EnemyBehavior : MonoBehaviour
     [Space]
 
     [SerializeField] private GameObject player;
+    private int playerLife;
     private bool canSeePlayer = false;
+    private bool canAttack = false;
     [SerializeField] float maxDistChase;
     [SerializeField] float maxAngle;
 
@@ -71,6 +73,7 @@ public class EnemyBehavior : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         state = EnemyState.Patrol;
         ChooseDestination();
+        playerLife = player.GetComponent<PlayerBehavior>().playerLife;
     }
 
     void Update()
@@ -101,11 +104,6 @@ public class EnemyBehavior : MonoBehaviour
 
             case EnemyState.Chase:
                 agent.SetDestination(player.transform.position +transform.forward*2);
-                if (transform.position == player.transform.position + transform.forward*2)
-                {
-                    state = EnemyState.Attacking;
-
-                }
                 if (!canSeePlayer)
                 {
                     state = EnemyState.Patrol;
@@ -114,10 +112,15 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     StartCoroutine(SetStateTo(EnemyState.Hurting));
                 }
+                if (canAttack)
+                {
+                    StartCoroutine(SetStateTo(EnemyState.Attacking));
+                }
                 break;
 
             case EnemyState.Attacking:
                 agent.SetDestination(player.transform.position);
+                EnnemyAttack();
                 Debug.Log("attacking");
                 break;
 
@@ -163,10 +166,6 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    // void SetStateTo(EnemyState enemyState)
-    // {
-    //     state = enemyState;
-    // }
 
     IEnumerator SetStateTo(EnemyState enemyState)
     {
@@ -263,6 +262,10 @@ public class EnemyBehavior : MonoBehaviour
             Debug.Log(isHurting);
 
         }
+        if (other.gameObject.tag == "DistancePlayer" && !isHurting)
+        {
+            canAttack = true;
+        }
     }
 
     void GetsHurt(int damage)
@@ -279,12 +282,12 @@ public class EnemyBehavior : MonoBehaviour
         transform.Rotate(0,0,90);
     }
 
-    // void EnnemyAttack()
-    // {
-    //     if (player.playerLife > 0)
-    //     {
-    //         player.playerLife -= 1;
-    //     }
-    // }
+    void EnnemyAttack()
+    {
+        if (playerLife > 0)
+        {
+            playerLife -= 1;
+        }
+    }
 
 }

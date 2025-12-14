@@ -49,7 +49,8 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private PickupItems pickupItems;
     [SerializeField] private GameObject craftingStation;
-    public bool canCraft;
+    public bool canCraft = false;
+    public bool isDead = false;
 
 
     public void Initialize()
@@ -82,6 +83,7 @@ public class PlayerBehavior : MonoBehaviour
         if (playerLife <= 0)
         {
             Debug.Log("player is dead");
+            isDead = true;
         }
         Debug.Log(playerLife);
     }

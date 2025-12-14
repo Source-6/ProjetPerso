@@ -73,7 +73,7 @@ public class InteractWithDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Door" && !doorIsOpen)
+        if ((other.gameObject.tag == "Door"|| other.gameObject.tag == "EndDoor") && !doorIsOpen)
         {
             closeDoor = false;
             canOpenDoor = true;
@@ -83,7 +83,7 @@ public class InteractWithDoor : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Door")
+        if (other.gameObject.tag == "Door"|| other.gameObject.tag == "EndDoor")
         {
             canOpenDoor = false;
             doorIsOpen = false;

@@ -33,6 +33,7 @@ public class EnemyBehavior : MonoBehaviour
     private bool canAttack = false;
     [SerializeField] float maxDistChase;
     [SerializeField] float maxAngle;
+    [SerializeField] int damage;
 
     [Header("Destroy")]
     [Space]
@@ -119,7 +120,15 @@ public class EnemyBehavior : MonoBehaviour
 
             case EnemyState.Attacking:
                 agent.SetDestination(player.transform.position);
-                EnnemyAttack();
+                //start coroutine here 
+                if (attackCooldown > 0)
+                {
+                    attackCooldown -= Time.deltaTime;
+                    if (attackCooldown <= 0f)
+                    {
+                        StartCoroutine(CooldownAttack());
+                    }
+                }
                 break;
 
             case EnemyState.Destroying:
@@ -187,12 +196,31 @@ public class EnemyBehavior : MonoBehaviour
         canSeePlayer = false;
     }
 
+    IEnumerator CooldownAttack()
+    {
+        EnnemyAttack();
+        ResetCooldownsAttack();
+        yield return true;
+        // attackCooldownTimer = attackCooldown;
+        // while (attackCooldownTimer > 0)
+        // {
+        //     attackCooldownTimer -= Time.deltaTime;
+        //     yield return true;
+        // }
+
+    }
+
 
 
     void ResetCooldowns()
     {
         coolDownBefore = 2f;
         coolDownAfter = 2f;
+    }
+
+    void ResetCooldownsAttack()
+    {
+        attackCooldown = 2f;
     }
 
     void ChooseDestination()  //modify this one to create path
@@ -295,13 +323,8 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (attackCooldownTimer >= 0 )
                 {
-                    attackCooldownTimer -= Time.deltaTime;
-                    player.GetComponent<PlayerBehavior>().playerLife --;
+                    player.GetComponent<PlayerBehavior>().playerLife -= damage;
                 }
-            else
-            {
-                attackCooldownTimer = attackCooldown;
-            }
         }
     }
 

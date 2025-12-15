@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/DoorScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/UiScene.unity
+    path: Assets/Scenes/StartingScreen.unity
     guid: a6db7d21a8c52f24aac9291dbb528f26
   - enabled: 1
     path: Assets/Scenes/NavMeshScene.unity

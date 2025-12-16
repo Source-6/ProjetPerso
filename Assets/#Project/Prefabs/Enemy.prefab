@@ -392,8 +392,9 @@ MonoBehaviour:
   - {fileID: 0}
   startingPos: {fileID: 0}
   player: {fileID: 0}
-  maxDistChase: 3
-  maxAngle: 90
+  maxDistChase: 10
+  maxAngle: 120
+  damage: 5
   maxDistWall: 3
   enemyLife: 100
   trap: {fileID: 2869650621370465046, guid: 2ceae542d771d8348a503dc134d6f01b, type: 3}

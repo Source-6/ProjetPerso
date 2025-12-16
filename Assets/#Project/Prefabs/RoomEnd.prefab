@@ -50,10 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3522152546110676209, guid: 1694186fcd00e7d438c91b6b44a90697, type: 3}
       propertyPath: m_Name
-      value: RoomRight2 Variant
+      value: RoomEnd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 99190186589222126, guid: 1694186fcd00e7d438c91b6b44a90697, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2374268230691258143, guid: 1694186fcd00e7d438c91b6b44a90697, type: 3}
       insertIndex: 10

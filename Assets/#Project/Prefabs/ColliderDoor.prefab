@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1970969004596293194}
   m_Layer: 0
   m_Name: ColliderDoor
-  m_TagString: Door
+  m_TagString: EndDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.179973, y: 6.776147, z: 6.152628}
-  m_Center: {x: -1.5898725, y: 2.888073, z: -1.4959885}
+  m_Size: {x: 8.179973, y: 6.776147, z: 9.830965}
+  m_Center: {x: -1.5898724, y: 2.888073, z: 0.3431797}
 --- !u!95 &1970969004596293194
 Animator:
   serializedVersion: 7
@@ -65,7 +65,7 @@ Animator:
   m_GameObject: {fileID: 665503852859808115}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8b8d2b4f0147d424097258297ba064d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5660a5b56ea976d4e89bfa7fd8d8f287, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -119,11 +119,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4712241404899073174, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712241404899073174, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712241404899073174, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

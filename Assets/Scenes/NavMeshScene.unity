@@ -1583,7 +1583,11 @@ PrefabInstance:
       objectReference: {fileID: 2042559996}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: maxAngle
-      value: 120
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
+      propertyPath: maxDistWall
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4106434932416111791, guid: fc1f3ae8998f213429b584888c264ec7, type: 3}
       propertyPath: startingPos

@@ -59,7 +59,7 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float coolDownAfter;
     private float visibilityCooldown = 3f;
     private float visibilityCooldownTimer = 0f;
-    private float attackCooldown = 3f;
+    private float attackCooldown = 4f;
     private float attackCooldownTimer = 0f;
 
 
@@ -103,7 +103,7 @@ public class EnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Chase:
-                agent.SetDestination(player.transform.position +transform.forward*2);
+                agent.SetDestination(player.transform.position + transform.forward * 2);
                 if (!canSeePlayer)
                 {
                     state = EnemyState.Patrol;
@@ -220,7 +220,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void ResetCooldownsAttack()
     {
-        attackCooldown = 2f;
+        attackCooldown = 4f;
     }
 
     void ChooseDestination()  //modify this one to create path

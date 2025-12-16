@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.179973, y: 6.776147, z: 9.830965}
-  m_Center: {x: -1.5898724, y: 2.888073, z: 0.3431797}
+  m_Size: {x: 7.65, y: 6, z: 7.8}
+  m_Center: {x: -1.3625612, y: 3, z: 0}
 --- !u!95 &1970969004596293194
 Animator:
   serializedVersion: 7
@@ -155,17 +155,17 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5345471748132685356, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2062933210131007819}
+      addedObject: {fileID: 3440264775883686595}
     - targetCorrespondingSourceObject: {fileID: 5345471748132685356, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4799016848008025401}
+      addedObject: {fileID: 75993700608150301}
   m_SourcePrefab: {fileID: 100100000, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
 --- !u!1 &4885785068557558764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5345471748132685356, guid: 44036a69bef0fce459d480c7f3063651, type: 3}
   m_PrefabInstance: {fileID: 712454507330676160}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2062933210131007819
+--- !u!65 &3440264775883686595
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,11 +182,11 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.000001, y: 0.20000009, z: 6.0000014}
-  m_Center: {x: -2.0042615, y: -0.101130195, z: 2.9976165}
---- !u!208 &4799016848008025401
+  m_Size: {x: 0.040000007, y: 0.0020000008, z: 0.06000001}
+  m_Center: {x: -0.020042617, y: -0.0010113318, z: 0.029976167}
+--- !u!208 &75993700608150301
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,11 +196,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 2, y: 0.1, z: 3.0000002}
+  m_Extents: {x: 0.020000001, y: 0.001, z: 0.030000001}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -2.0040002, y: -0.101, z: 2.9980001}
+  m_Center: {x: -0.020000001, y: -0.001, z: 0.030000001}
   m_TimeToStationary: 0.5
 --- !u!4 &5225894168294308182 stripped
 Transform:

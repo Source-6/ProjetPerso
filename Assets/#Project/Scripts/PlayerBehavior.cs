@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,6 +52,7 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private GameObject craftingStation;
     public bool canCraft = false;
     public bool isDead = false;
+    public bool goodend = false;
 
 
     public void Initialize()
@@ -97,6 +99,10 @@ public class PlayerBehavior : MonoBehaviour
                 canCraft = true;
                 Debug.Log("enter");
             }
+        }
+        if (other.gameObject.tag == "GoodEnd")
+        {
+            goodend = true;
         }
     }
 

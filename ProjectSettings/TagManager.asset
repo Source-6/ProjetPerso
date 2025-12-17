@@ -17,6 +17,7 @@ TagManager:
   - CraftingStation
   - DistancePlayer
   - EndDoor
+  - GoodEnd
   layers:
   - Default
   - TransparentFX

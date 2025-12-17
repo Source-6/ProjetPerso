@@ -24,7 +24,7 @@ public class SceneSwitcher : MonoBehaviour
             SwitchScene();
         }
 
-        if (sceneName == "NavMeshScene" && player.transform.position.y <=-200 )
+        if (player.goodend)
         {
             sceneName = "GoodEndScene";
             SwitchScene();
